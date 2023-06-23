@@ -5,7 +5,8 @@ int Add(int a, int b) {
 
     __asm__ __volatile__(
             "mov %%eax, %0\n\t"
-            :"=r"(c)
+            :
+            :"r"(c)
             );
 }
 
