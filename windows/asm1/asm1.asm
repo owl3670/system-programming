@@ -1,12 +1,9 @@
 ; asm1.asm
 
-.model flat
+global _asm_main
 
-public _asm_main
+section .code               ; code segment
 
-.code
-_asm_main:
+_asm_main:          ; function _asm_main
     mov eax, 100    ; return 100
     ret
-
-end
