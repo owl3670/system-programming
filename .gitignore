@@ -20,6 +20,9 @@ _deps
 *.obj
 *.elf
 
+# Assembly output
+*.s
+
 # Linker output
 *.ilk
 *.map

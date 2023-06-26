@@ -12,9 +12,10 @@ int main() {
             "movl $1, %%edx\n\t"
             "movl $2, %%ecx\n\t"
             "call Add\n\t"
-            "mov %0, %%eax \n\t"
+            "movl %%eax, %0 \n\t"
             :"=r"(n)
             :
+            :"%esi", "%edi"
             );
 
     printf("n = %d\n", n);
