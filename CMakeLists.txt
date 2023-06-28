@@ -3,5 +3,7 @@ project(system-programming C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(inline_asm1 assembly/inline_asm1.c)
-add_executable(inline_asm2 assembly/inline_asm2.c)
+add_executable(gcc_inline_asm1 assembly/gcc/inline_asm1.c)
+add_executable(gcc_inline_asm2 assembly/gcc/inline_asm2.c)
+add_executable(vcpp_inline_asm1 assembly/vcpp/inline_asm1.c)
+add_executable(vcpp_inline_asm2 assembly/vcpp/inline_asm2.c)
