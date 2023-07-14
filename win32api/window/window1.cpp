@@ -1,4 +1,4 @@
-// window.cpp
+// window1.cpp
 #include <stdio.h>
 #include <Windows.h>
 #include <tchar.h>
