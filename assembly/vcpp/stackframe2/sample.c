@@ -1,4 +1,4 @@
-// sample.c
+// create_process.c
 #include <stdio.h>
 
 int add(int a, int b)
