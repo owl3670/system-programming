@@ -4,7 +4,7 @@
 #include <tchar.h>
 
 int main() {
-    WNDCLASSED wcex = {0};
+    WNDCLASSEX wcex = {0};
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = DefWindowProc;
     wcex.lpszClassName = _T("MyWindow");

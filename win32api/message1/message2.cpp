@@ -19,7 +19,7 @@ LRESULT __stdcall WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 int main() {
-    WNDCLASSED wcex = {0};
+    WNDCLASSEX wcex = {0};
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = WndProc;
     wcex.lpszClassName = _T("MyWindow");

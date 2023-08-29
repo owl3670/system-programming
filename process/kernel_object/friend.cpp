@@ -30,7 +30,7 @@ LRESULT __stdcall WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 int main() {
-    WNDCLASSED wcex = {0};
+    WNDCLASSEX wcex = {0};
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = WndProc;
     wcex.lpszClassName = _T("MyWindow");
@@ -56,7 +56,7 @@ int main() {
     // 메세지 큐에서 메세지를 꺼내온다.
     // MessageLoop
     MSG msg;
-    while(GetMessage(&msg, hwnd, 10, 100);)
+    while(GetMessage(&msg, hwnd, 10, 100))
     {
         // 윈도우 클래스에 등록된 함수로 전달
         DispatchMessage(&msg);

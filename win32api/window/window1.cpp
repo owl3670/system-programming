@@ -6,7 +6,7 @@
 int main() {
     // 1. 윈도우 클래스 만들기
 
-    WNDCLASSED wcex = {0};
+    WNDCLASSEX wcex = {0};
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = DefWindowProc;
     wcex.lpszClassName = _T("MyWindow");
