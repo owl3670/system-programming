@@ -14,7 +14,7 @@ int main()
 
     GlobalMemoryStatusEx(&mse);
 
-    printf("TOTAL       Phy Mem : %lld\n", mse.ullTotalPhys);
-    printf("Available   Phy Mem : %lld\n", mse.ullAvailPhys);
-    printf("Total      Page File: %lld\n", mse.ullTotalPageFile);
+    printf("TOTAL       Phy Mem : %lld\n", mse.ullTotalPhys);       //# 1. 설치된 물리 메모리의 크기
+    printf("Available   Phy Mem : %lld\n", mse.ullAvailPhys);       //# 2. 할당 가능한 물리 메모리의 크기
+    printf("Total      Page File: %lld\n", mse.ullTotalPageFile);   //# 3. Paging File 의 최대 크기
 }
