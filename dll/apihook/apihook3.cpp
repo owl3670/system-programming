@@ -1,17 +1,22 @@
-// 32bit debug 모드
 #include <Windows.h>
 #include <stdio.h>
 
-// MessageBoxA 를 후킹할 함수
-// MessageBoxA 함수의 모양(signature)가 동일 해야 한다.
+typedef UINT (__stdcall *F)(HWND, const char*, const char*, UINT);
+
 UINT __stdcall foo(HWND hwnd, const char* s1, const char* s2, UINT btn){
     printf("foo : %s, %s\n", s1, s2);
-    return 0;
+
+    // 재귀 호출
+//    return MessageBoxA(hwnd, s1, s2, btn);
+
+    // Anti-hooking
+    HMODULE hDll = GetModuleHandleA("user32.dll");
+    F f = (F)GetProcAddress(hDll, "MessageBoxA");
+
+    return f(hwnd, s2, s1, btn);
 }
 
 int main(){
-    // MessageBoxA 의 주소를 담은 IAT 항목을 덮어쓴다.
-    // 주소값이 계속 바뀌기에 IDE 에서 옵션 값으로 바뀌지 않게 하여야 한다.
     DWORD old;
     VirtualProtect((void*)0x041B09C, sizeof(void*), PAGE_READWRITE, &old);
     *((int*)0x041B09C) = (int)&foo;
