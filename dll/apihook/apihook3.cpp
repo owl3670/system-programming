@@ -13,7 +13,7 @@ UINT __stdcall foo(HWND hwnd, const char* s1, const char* s2, UINT btn){
     HMODULE hDll = GetModuleHandleA("user32.dll");
     F f = (F)GetProcAddress(hDll, "MessageBoxA");
 
-    return f(hwnd, s2, s1, btn);
+    return f(hwnd, s1, s2, btn);
 }
 
 int main(){
