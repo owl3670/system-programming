@@ -14,27 +14,29 @@ UINT __stdcall foo(HWND hwnd, const char *s1, const char *s2, UINT btn) {
 void Replace(HMODULE hExe, const char *dllname, void *api, void *func) {
     // 1. .exe 에서 import 섹션의 주소를 얻어낸다.
     ULONG sz;
-    IMAGE_IMPORT_DESCRIPTOR* pImage = (IMAGE_IMPORT_DESCRIPTOR*)::ImageDirectoryEntryToData(hExe, TRUE, IMAGE_DIRECTORY_ENTRY_IMPORT, &sz);
+    IMAGE_IMPORT_DESCRIPTOR *pImage = (IMAGE_IMPORT_DESCRIPTOR *) ::ImageDirectoryEntryToData(hExe, TRUE,
+                                                                                              IMAGE_DIRECTORY_ENTRY_IMPORT,
+                                                                                              &sz);
     printf("Address Import Directory : %p\n", pImage);
 
     // 2. 해당 DLL의 정보를 가진 항목을 찾아낸다.
-    for(; pImage->Name; pImage++){
-        char* s = ((char*)hExe + pImage -> Name);
+    for (; pImage->Name; pImage++) {
+        char *s = ((char *) hExe + pImage->Name);
 
         if (_strcmpi(s, dllname) == 0) break;
     }
-    if (pImage -> Name == 0){
+    if (pImage->Name == 0) {
         printf("can not found %s\n", dllname);
         return;
     }
     printf("%s import table : %p\n", dllname, pImage);
 
     // 3. 함수주소를 담은 table 을 조사한다.
-    IMAGE_THUNK_DATA* pThunk = (IMAGE_THUNK_DATA*)((char*)hExe + pImage -> FirstThunk);
+    IMAGE_THUNK_DATA *pThunk = (IMAGE_THUNK_DATA *) ((char *) hExe + pImage->FirstThunk);
 
-    for(; pThunk -> u1.Function; pThunk++){
-        if(pThunk -> u1.Function == (DWORD)api){
-            DWORD* addr = &(pThunk -> u1.Function);
+    for (; pThunk->u1.Function; pThunk++) {
+        if (pThunk->u1.Function == (DWORD) api) {
+            DWORD *addr = &(pThunk->u1.Function);
 
             DWORD old;
             VirtualProtect(addr, sizeof(DWORD), PAGE_READWRITE, &old);
