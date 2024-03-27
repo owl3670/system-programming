@@ -34,7 +34,7 @@ int main(){
 
 //            WaitForSingleObject(hFile, INFINITE);
             WaitForSingleObject(ov.hEvent, INFINITE);
-            printf("complete io\n")
+            printf("complete io\n");
 
         } else {
             printf("Read Error\n");
